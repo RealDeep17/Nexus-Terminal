@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --bg-chart: #131722;
+        --bg-app: #131722;
+        --bg-panel: #1e222d;
+        --bg-dropdown: #1e222d;
+        --bg-modal: #1e222d;
+        --bg-input: #2a2e39;
+        --bg-hover: #2a2e39;
+        --bg-selected: #2962ff1a;
+        --bg-tooltip: #363a45;
+
+        --border: #2a2e39;
+        --border-light: #363c4e;
+        --border-focus: #2962ff;
+
+        --text-primary: #d1d4dc;
+        --text-secondary: #787b86;
+        --text-muted: #434651;
+        --text-link: #2962ff;
+        --text-inverse: #131722;
+
+        --blue: #2962ff;
+        --blue-hover: #1e53e5;
+        --blue-dim: rgba(41, 98, 255, 0.1);
+
+        --green: #26a69a;
+        --green-dim: rgba(38, 166, 154, 0.15);
+        --red: #ef5350;
+        --red-dim: rgba(239, 83, 80, 0.15);
+
+        --candle-up-body: #26a69a;
+        --candle-up-wick: #26a69a;
+        --candle-dn-body: #ef5350;
+        --candle-dn-wick: #ef5350;
+
+        --vol-up: rgba(38, 166, 154, 0.5);
+        --vol-dn: rgba(239, 83, 80, 0.5);
+
+        --ind-blue: #2962ff;
+        --ind-orange: #ff9800;
+        --ind-teal: #089981;
+        --ind-purple: #9c27b0;
+        --ind-red: #f23645;
+        --ind-green: #089981;
+
+        --ema-21: #2962ff;
+        --ema-50: #ff9800;
+        --ema-100: #e91e63;
+        --ema-200: #9c27b0;
+
+        --grid-line: rgba(255, 255, 255, 0.04);
+        --crosshair: rgba(255, 255, 255, 0.2);
+
+        --amber: #f59f00;
+        --amber-dim: rgba(245, 159, 0, 0.15);
+    }
+
+    body {
+        background-color: var(--bg-app);
+        color: var(--text-primary);
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        font-variant-numeric: tabular-nums;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+@layer components {
+
+    /* Scrollbar override TV style */
+    ::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #434651;
+        border-radius: 2px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #787b86;
+    }
+
+    /* Core UI elements */
+    .tv-input {
+        @apply bg-[#2a2e39] text-[#d1d4dc] border border-[#2a2e39] rounded-[3px] h-[28px] px-2 text-sm focus:outline-none focus:border-[#2962ff] transition-colors duration-150;
+    }
+
+    .tv-button {
+        @apply h-[28px] px-3 rounded-[3px] text-sm font-medium flex items-center justify-center transition-colors duration-150;
+    }
+
+    .tv-button-primary {
+        @apply bg-[#2962ff] text-white hover:bg-[#1e53e5];
+    }
+
+    .tv-button-ghost {
+        @apply text-[#787b86] hover:bg-[#2a2e39] hover:text-[#d1d4dc];
+    }
+
+    /* Dropdowns & Modals */
+    .tv-dropdown {
+        @apply bg-bg-dropdown border border-border-default rounded-[4px] shadow-[0_4px_16px_rgba(0, 0, 0, 0.4)];
+    }
+
+    .tv-modal {
+        @apply bg-bg-modal border border-border-default rounded-[4px] shadow-[0_8px_32px_rgba(0, 0, 0, 0.5)];
+    }
+
+    /* Pane Separators */
+    .tv-pane-separator {
+        @apply h-[1px] bg-border-default hover:bg-border-light cursor-ns-resize z-10 transition-colors;
+    }
+
+    /* ──────────────────────────────────────────────────────────────
+       Phase 14 Re-integrations: Custom Layout & Animations 
+       ────────────────────────────────────────────────────────────── */
+
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    @keyframes flash-green {
+
+        0%,
+        100% {
+            background-color: transparent;
+        }
+
+        50% {
+            background-color: rgba(38, 166, 154, 0.2);
+        }
+    }
+
+    @keyframes flash-red {
+
+        0%,
+        100% {
+            background-color: transparent;
+        }
+
+        50% {
+            background-color: rgba(239, 83, 80, 0.2);
+        }
+    }
+
+    .flash-green {
+        animation: flash-green 400ms ease-out;
+    }
+
+    .flash-red {
+        animation: flash-red 400ms ease-out;
+    }
+}
